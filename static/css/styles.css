@@ -1,0 +1,136 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Open Sans', Arial, sans-serif;
+    background-color: #f8f9fa;
+    background-image: radial-gradient(#888 1px, transparent 1px);
+    background-size: 20px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.header-bar {
+    width: 100%;
+    background-color: #000;
+    color: #fff;
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.project-name {
+    color: #00acee;
+    font-size: 1.5rem;
+    margin-left: -135px;
+}
+
+.header-links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    margin-right: 20px;
+}
+
+.header-links a:hover {
+    color: #00acee;
+}
+
+.container.content-wrapper {
+    max-width: 1400px;
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    margin-top: 20px;
+}
+
+.header h1 {
+    font-size: 2.4em;
+    color: #333;
+    font-weight: bold;
+}
+
+.description {
+    font-size: 1em;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.main-content {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    gap: 40px;
+}
+
+.input-output-box {
+    border: 1px solid #333;
+    border-radius: 8px;
+    width: 540px;
+    background-color: #f7f7f7;
+}
+
+.text-box {
+    width: 100%;
+    min-height: 500px;
+    padding: 15px;
+    font-size: 16px;
+    background: #f7f7f7;
+    border: none;
+    resize: none;
+    border-radius: 5px;
+}
+
+.text-box:focus {
+    outline: none;
+}
+
+.translate-btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    margin-top: 20px;
+}
+
+.language-section {
+    background: none;
+    padding-top: 20px;
+}
+
+.file-upload-section {
+    margin-top: 20px;
+}
+
+.upload-label {
+    font-weight: 500;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.custom-file-upload {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.custom-file-upload input[type="file"] {
+    display: none;
+}
+
+.additional-text {
+    color: #555;
+    font-size: 0.9em;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.signature {
+    font-size: 0.9em;
+    color: #333;
+    margin-top: 20px;
+}

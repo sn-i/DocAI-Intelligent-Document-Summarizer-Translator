@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DocTools - Document Summarizer & Translator</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header-bar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h3 class="project-name">DocTools</h3>
+            <nav class="header-links">
+                <a href="#">Editor</a>
+                <a href="#">History</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container content-wrapper text-center">
+        <!-- Header and Description -->
+        <div class="header text-center my-4">
+            <h1>Transform Your Documents</h1>
+            <p class="description">Easily summarize and translate lengthy documents with DocTools. Paste or upload a document, choose language options, and let our tool process it.</p>
+        </div>
+
+        <!-- Main Content with Input, Language Selection, and Output -->
+        <div class="main-content d-flex justify-content-center align-items-start">
+            <!-- Input Section -->
+            <div class="input-output-box">
+                <textarea id="input-text" class="form-control text-box" placeholder="Insert (English) text here..."></textarea>
+            </div>
+
+            <!-- Language Selection Section with Button -->
+            <div class="language-section mx-4 text-center">
+                <h5>Languages</h5>
+                <div class="form-group">
+                    <label for="from-lang">Translate from:</label>
+                    <select id="from-lang" class="form-control mb-2">
+                        <option value="en">English</option>
+                        <option value="es">Spanish</option>
+                        <option value="fr">French</option>
+                        <option value="de">German</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="to-lang">Translate to:</label>
+                    <select id="to-lang" class="form-control">
+                        <option value="en">English</option>
+                        <option value="es">Spanish</option>
+                        <option value="fr">French</option>
+                        <option value="de">German</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary mt-3 translate-btn">Summarize & Translate</button>
+            </div>
+
+            <!-- Output Section -->
+            <div class="input-output-box">
+                <textarea id="output-text" class="form-control text-box" readonly placeholder="Paraphrased text will appear here..."></textarea>
+            </div>
+        </div>
+
+        <!-- File Upload Section (moved below main content) -->
+        <div class="file-upload-section text-center mt-4">
+            <p class="upload-label">or Upload Document (PDF, DOCX, TXT):</p>
+            <label class="custom-file-upload">
+                <input type="file" class="form-control-file" id="file" name="file">
+                <span>Choose File</span>
+            </label>
+        </div>
+
+        <!-- Additional Text Section -->
+        <div class="additional-text mt-4">
+            <p>Our tool simplifies document processing by converting lengthy paragraphs into concise summaries and translating them into various languages.</p>
+            <p>Perfect for students, researchers, and professionals who need quick document insights in different languages.</p>
+        </div>
+
+        <!-- Footer with Signature -->
+        <div class="signature text-center mt-5">
+            <p>Made with ❤️ by Sani Inauri</p>
+        </div>
+    </div>
+</body>
+</html>
