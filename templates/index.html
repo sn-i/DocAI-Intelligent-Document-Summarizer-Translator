@@ -6,6 +6,14 @@
     <title>DocTools - Document Summarizer & Translator</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script>
+        function copyToClipboard() {
+            const outputText = document.getElementById("output-text");
+            outputText.select();
+            document.execCommand("copy");
+            alert("Text copied to clipboard!");
+        }
+    </script>
 </head>
 <body>
     <!-- Header -->
@@ -24,54 +32,48 @@
         <!-- Header and Description -->
         <div class="header text-center my-4">
             <h1>Transform Your Documents</h1>
-            <p class="description">Easily summarize and translate lengthy documents with DocTools. Paste or upload a document, choose language options, and let our tool process it.</p>
+            <p class="description">Easily summarize and translate lengthy documents with DocTools. Paste your text, choose language options, and let our tool process it.</p>
         </div>
 
         <!-- Main Content with Input, Language Selection, and Output -->
-        <div class="main-content d-flex justify-content-center align-items-start">
-            <!-- Input Section -->
-            <div class="input-output-box">
-                <textarea id="input-text" class="form-control text-box" placeholder="Insert (English) text here..."></textarea>
-            </div>
-
-            <!-- Language Selection Section with Button -->
-            <div class="language-section mx-4 text-center">
-                <h5>Languages</h5>
-                <div class="form-group">
-                    <label for="from-lang">Translate from:</label>
-                    <select id="from-lang" class="form-control mb-2">
-                        <option value="en">English</option>
-                        <option value="es">Spanish</option>
-                        <option value="fr">French</option>
-                        <option value="de">German</option>
-                    </select>
+        <form action="{{ url_for('process') }}" method="POST">
+            <div class="main-content d-flex justify-content-center align-items-start">
+                <!-- Input Section -->
+                <div class="input-output-box">
+                    <textarea id="input-text" name="text_input" class="form-control text-box" placeholder="Insert  text here...">{{ text_input }}</textarea>
                 </div>
-                <div class="form-group">
-                    <label for="to-lang">Translate to:</label>
-                    <select id="to-lang" class="form-control">
-                        <option value="en">English</option>
-                        <option value="es">Spanish</option>
-                        <option value="fr">French</option>
-                        <option value="de">German</option>
-                    </select>
+
+                <!-- Language Selection Section with Button -->
+                <div class="language-section mx-4 text-center">
+                    <h5>Languages</h5>
+                    <div class="form-group">
+                        <label for="from-lang">Translate from:</label>
+                        <select id="from-lang" name="from_lang" class="form-control mb-2">
+                            <option value="en" {% if from_lang == 'en' %}selected{% endif %}>English</option>
+                            <option value="es" {% if from_lang == 'es' %}selected{% endif %}>Spanish</option>
+                            <option value="fr" {% if from_lang == 'fr' %}selected{% endif %}>French</option>
+                            <option value="de" {% if from_lang == 'de' %}selected{% endif %}>German</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="to-lang">Translate to:</label>
+                        <select id="to-lang" name="to_lang" class="form-control">
+                            <option value="en" {% if to_lang == 'en' %}selected{% endif %}>English</option>
+                            <option value="es" {% if to_lang == 'es' %}selected{% endif %}>Spanish</option>
+                            <option value="fr" {% if to_lang == 'fr' %}selected{% endif %}>French</option>
+                            <option value="de" {% if to_lang == 'de' %}selected{% endif %}>German</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3 translate-btn">Summarize & Translate</button>
                 </div>
-                <button type="submit" class="btn btn-primary mt-3 translate-btn">Summarize & Translate</button>
-            </div>
 
-            <!-- Output Section -->
-            <div class="input-output-box">
-                <textarea id="output-text" class="form-control text-box" readonly placeholder="Paraphrased text will appear here..."></textarea>
+                <!-- Output Section with Copy Button -->
+                <div class="input-output-box position-relative">
+                    <textarea id="output-text" class="form-control text-box" readonly placeholder="Paraphrased text will appear here...">{{ translation }}</textarea>
+                    <button type="button" onclick="copyToClipboard()" class="btn btn-secondary position-absolute" style="bottom: 10px; right: 10px;">Copy Text</button>
+                </div>
             </div>
-        </div>
-
-        <!-- File Upload Section (moved below main content) -->
-        <div class="file-upload-section text-center mt-4">
-            <p class="upload-label">or Upload Document (PDF, DOCX, TXT):</p>
-            <label class="custom-file-upload">
-                <input type="file" class="form-control-file" id="file" name="file">
-                <span>Choose File</span>
-            </label>
-        </div>
+        </form>
 
         <!-- Additional Text Section -->
         <div class="additional-text mt-4">
