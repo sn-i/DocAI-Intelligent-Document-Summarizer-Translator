@@ -7,21 +7,20 @@ from datetime import datetime
 app = Flask(__name__)
 
 def init_db():
-    conn = sqlite3.connect('history.db')
-    cursor = conn.cursor()
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS history (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            original_text TEXT,
-            summary TEXT,
-            translation TEXT,
-            from_lang TEXT,
-            to_lang TEXT,
-            timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
-        )
-    ''')
-    conn.commit()
-    conn.close()
+    with sqlite3.connect('history.db') as conn:
+        cursor = conn.cursor()
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS history (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                original_text TEXT,
+                summary TEXT,
+                translation TEXT,
+                from_lang TEXT,
+                to_lang TEXT,
+                timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+            )
+        ''')
+        conn.commit()
 
 # Initialize the database
 init_db()
