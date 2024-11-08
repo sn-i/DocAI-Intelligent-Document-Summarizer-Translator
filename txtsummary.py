@@ -23,11 +23,9 @@ class TxtSummary:
         )
         return text_analytics_client
 
-    def sample_extractive_summarization(self):
-        document = input("Enter text: ")
-
+    def sample_extractive_summarization(self, document_text):
         poller = self.client.begin_analyze_actions(
-            [document],  # document must be a list of strings
+            [document_text],  # document must be a list of strings
             actions=[
                 ExtractiveSummaryAction(max_sentence_count=4)
             ],
@@ -35,14 +33,12 @@ class TxtSummary:
 
         document_results = poller.result()
         for result in document_results:
-            extract_summary_result = result[0]  # First document, first result
+            extract_summary_result = result[0]
             if extract_summary_result.is_error:
-                print(f"Error with code '{extract_summary_result.code}' and message '{extract_summary_result.message}'")
+                return None
             else:
-                # Display summary
-                summary = " ".join([sentence.text for sentence in extract_summary_result.sentences])
-                print("Summary extracted: \n", summary)
-                return summary
+                return " ".join([sentence.text for sentence in extract_summary_result.sentences])
+
 
 # txt = TxtSummary()
 # txt.sample_extractive_summarization()
